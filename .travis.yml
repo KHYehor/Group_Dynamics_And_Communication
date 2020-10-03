@@ -1,0 +1,8 @@
+os: linux
+language: go
+go:
+  - "1.14"
+script:
+  - yarn install
+  - yarn test
+  - ssh centos@159.89.4.226
