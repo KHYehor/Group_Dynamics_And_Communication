@@ -26,4 +26,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn install
     - run: yarn test
-    - run: ssh centos@159.89.4.226 < ./deploy/prod.sh
+    - run: ssh -ttt centos@159.89.4.226 < ./deploy/prod.sh
