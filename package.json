@@ -27,6 +27,7 @@
       "@nestjs/platform-express": "^7.0.0",
       "mysql": "^2.18.1",
       "mysql2": "^2.2.5",
+      "pg": "^8.4.2",
       "postgres": "^1.0.2",
       "reflect-metadata": "^0.1.10",
       "rimraf": "^3.0.2",

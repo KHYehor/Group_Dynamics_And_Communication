@@ -6,8 +6,8 @@ export class GroupsMigrations1604514126693 implements MigrationInterface {
         return queryRunner.query(`
             CREATE TABLE IF NOT EXISTS Groups(
                 id              SERIAL  NOT NULL PRIMARY KEY,
-                university_id   SERIAL  NOT NULL REFERENCES Universities(id) ON DELETE CASCADE
-                name            text    NOT NULL UNIQUE 
+                university_id   SERIAL  NOT NULL REFERENCES Universities(id) ON DELETE CASCADE,
+                name            TEXT    NOT NULL UNIQUE 
             );
         `);
     }
