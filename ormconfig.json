@@ -1,24 +1,24 @@
 {
    "type": "postgres",
-   "host": "localhost",
+   "host": "165.227.135.252",
    "port": 5432,
    "username": "postgres",
-   "password": "pass",
-   "database": "testdb",
+   "password": "postgres",
+   "database": "GDK",
    "synchronize": true,
    "logging": false,
    "entities": [
-      "src/entity/**/*.ts"
+      "src/db/entities/*.ts"
    ],
    "migrations": [
-      "src/migration/**/*.ts"
+      "src/db/migration/**/*.ts"
    ],
    "subscribers": [
-      "src/subscriber/**/*.ts"
+      "src/db/subscriber/**/*.ts"
    ],
    "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
+      "entitiesDir": "src/db/entities",
+      "migrationsDir": "src/db/migration",
+      "subscribersDir": "src/db/subscriber"
    }
 }
