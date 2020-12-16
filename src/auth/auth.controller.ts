@@ -1,4 +1,6 @@
-import {Body, Controller, Get, Post, Res} from '@nestjs/common';
+import {Body, Controller, Get, Post, Res, Headers, HttpException, HttpStatus} from '@nestjs/common';
+import { NOT_AUTHORIZED } from '../common/constants';
+import { IResponseDataRefreshToken, IResponseDataSignIn, IResponseDataSignOut } from './interfaces/response';
 import { AuthService } from "./service/auth.service";
 
 @Controller('auth')
@@ -7,20 +9,24 @@ export class AuthController {
 
   @Post('sign-in')
   async signIn(@Body() body, @Res() response) {
-    console.log('here1');
     // eslint-disable-next-line @typescript-eslint/ban-types
-    const token: Object = this.authService.signIn(body);
-    console.log('here2');
-    return response.send(token);
+    // @ts-ignore
+    const responseData: IResponseDataSignIn = this.authService.signIn(body);    
+    return response.send(responseData);
   }
 
   @Post('sign-out')
   async signOut(@Res() response) {
-    // TODO: delete token from db storage
+    const responseData: IResponseDataSignOut = this.authService.signOut();    
+    return response.send(responseData);
   }
 
-  @Get('refresh-tokens')
-  async refreshTokens(@Res() response) {
-    // TODO: get new tokens
+  @Post('refresh-tokens')
+  async refreshTokens(@Headers('Authorization') token, @Res() response) {
+    if(!token) {
+      throw new HttpException(NOT_AUTHORIZED, HttpStatus.UNAUTHORIZED);
+    } 
+    const responseData: IResponseDataRefreshToken = this.authService.refreshTokens(token);    
+    return response.send(responseData);
   }
 }
